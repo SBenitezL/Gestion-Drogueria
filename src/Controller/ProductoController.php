@@ -33,7 +33,8 @@ class ProductoController extends AbstractController
     #[Route('/update/producto/{id}', name: 'app_producto')]
     public function updateProducto($id): Response
     {
-        $producto = $this->en->getRepository(PRODUCTO::class)->find(id:$id);
+        $producto = $this->en->getRepository(PRODUCTO::class)->find(id:$id); 
+        // #set a nombre por defecto#
         $producto->setPrdNombre('Dolex');
         $this->en->flush();
         return new JsonResponse(['success' => true]);
