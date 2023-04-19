@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\PRODUCTO;
+use App\Entity\PROVEEDOR;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,5 +30,16 @@ class ProductoController extends AbstractController
             'producto' => $producto,
             'custome_prd' => $custome_prd
         ]);
+    }
+
+    #[Route('/insert/producto', name: 'insert_producto')]
+    public function insert() {
+        $producto = new PRODUCTO('Dolex gripa',36,1500,350,800,0,'Frasco');
+        $proveedor = $this->en->getRepository(PROVEEDOR::class)->find(233);
+        $producto->setProvCode($proveedor);
+        $this->en->persist($producto);
+        $this->en->flush();
+        return new JsonResponse(['succes' => true]);
+        
     }
 }
