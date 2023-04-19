@@ -33,10 +33,17 @@ class ProductoController extends AbstractController
     #[Route('/update/producto/{id}', name: 'app_producto')]
     public function updateProducto($id)
     {
-        $producto = $this->en->getRepository(PRODUCTO::class)->find($id);
+        $producto = $this->en->getRepository(PRODUCTO::class)->find(id:$id);
         $producto->setPrdNombre('Dolex');
         $this->en->flush();
-        return new JsonResponse(['correcto' => true]);
-
+        return new JsonResponse(['success' => true]);
+    }
+    #[Route('/remove/producto/{id}', name: 'app_producto')]
+    public function removeProducto($id): Response
+    {
+        $producto = $this->en->getRepository(PRODUCTO::class)->find(id:$id);
+        $this->en->remove($producto);
+        $this->en->flush();
+        return new JsonResponse(['success' => true]);
     }
 }
