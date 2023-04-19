@@ -31,7 +31,6 @@ class ProductoController extends AbstractController
             'custome_prd' => $custome_prd
         ]);
     }
-<<<<<<< HEAD
 
     #[Route('/insert/producto', name: 'insert_producto')]
     public function insert() {
@@ -41,8 +40,7 @@ class ProductoController extends AbstractController
         $this->en->persist($producto);
         $this->en->flush();
         return new JsonResponse(['succes' => true]);
-        
-=======
+    }    
     #[Route('/update/producto/{id}', name: 'app_producto')]
     public function updateProducto($id): Response
     {
@@ -59,6 +57,5 @@ class ProductoController extends AbstractController
         $this->en->remove($producto);
         $this->en->flush();
         return new JsonResponse(['success' => true]);
->>>>>>> 937d6b9bb2525c716d8828f18aede3c6436a7999
     }
 }
