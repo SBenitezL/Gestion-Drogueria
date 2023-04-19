@@ -20,6 +20,10 @@ class LOTE
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $lt_fecha_vencimiento = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PRODUCTO $prd_codigo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class LOTE
     public function setLtFechaVencimiento(\DateTimeInterface $lt_fecha_vencimiento): self
     {
         $this->lt_fecha_vencimiento = $lt_fecha_vencimiento;
+
+        return $this;
+    }
+
+    public function getPrdCodigo(): ?PRODUCTO
+    {
+        return $this->prd_codigo;
+    }
+
+    public function setPrdCodigo(PRODUCTO $prd_codigo): self
+    {
+        $this->prd_codigo = $prd_codigo;
 
         return $this;
     }

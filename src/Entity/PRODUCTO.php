@@ -35,6 +35,10 @@ class PRODUCTO
     #[ORM\Column(type: Types::TEXT)]
     private ?string $prd_unidad = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PROVEEDOR $prov_code = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +124,18 @@ class PRODUCTO
     public function setPrdUnidad(string $prd_unidad): self
     {
         $this->prd_unidad = $prd_unidad;
+
+        return $this;
+    }
+
+    public function getProvCode(): ?PROVEEDOR
+    {
+        return $this->prov_code;
+    }
+
+    public function setProvCode(PROVEEDOR $prov_code): self
+    {
+        $this->prov_code = $prov_code;
 
         return $this;
     }
