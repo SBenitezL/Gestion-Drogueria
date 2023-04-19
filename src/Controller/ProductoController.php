@@ -31,7 +31,7 @@ class ProductoController extends AbstractController
         ]);
     }
     #[Route('/update/producto/{id}', name: 'app_producto')]
-    public function updateProducto($id)
+    public function updateProducto($id): Response
     {
         $producto = $this->en->getRepository(PRODUCTO::class)->find(id:$id);
         $producto->setPrdNombre('Dolex');
