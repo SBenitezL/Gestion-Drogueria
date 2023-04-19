@@ -38,7 +38,8 @@ class PRODUCTORepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+   
+ 
 //    /**
 //     * @return PRODUCTO[] Returns an array of PRODUCTO objects
 //     */
