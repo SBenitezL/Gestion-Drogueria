@@ -39,6 +39,18 @@ class PRODUCTORepository extends ServiceEntityRepository
         }
     }
 
+    public function findProducto($id)
+    {
+        return $this->getEntityManager()
+            -> createQuery(
+                '   SELECT prd.id, prd.prd_nombre
+                    FROM App:PRODUCTO prd
+                    WHERE prd.id =:id'
+            )
+            ->setParameter(key:'id',value: $id)
+            -> getResult();
+    }
+
 //    /**
 //     * @return PRODUCTO[] Returns an array of PRODUCTO objects
 //     */
