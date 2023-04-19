@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PRODUCTORepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,7 +39,20 @@ class PRODUCTO
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?PROVEEDOR $prov_code = null;
+    private $interactions;
 
+    public function __construct($prd_nombre,$prd_cantidad,$prd_precio,$prd_precio_unitario,$prd_costo,$prd_iva,$prd_unidad)
+    {
+        $this->prd_nombre = $prd_nombre;
+        $this->prd_cantidad = $prd_cantidad;
+        $this->prd_precio = $prd_precio;
+        $this->prd_precio_unitario = $prd_precio_unitario;
+        $this->prd_costo = $prd_costo;
+        $this->prd_iva = $prd_iva;
+        $this->prd_unidad = $prd_unidad;
+
+        $this->interactions = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;

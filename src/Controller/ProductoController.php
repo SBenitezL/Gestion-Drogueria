@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PRODUCTO;
+use App\Entity\PROVEEDOR;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,6 +31,18 @@ class ProductoController extends AbstractController
             'custome_prd' => $custome_prd
         ]);
     }
+<<<<<<< HEAD
+
+    #[Route('/insert/producto', name: 'insert_producto')]
+    public function insert() {
+        $producto = new PRODUCTO('Dolex gripa',36,1500,350,800,0,'Frasco');
+        $proveedor = $this->en->getRepository(PROVEEDOR::class)->find(233);
+        $producto->setProvCode($proveedor);
+        $this->en->persist($producto);
+        $this->en->flush();
+        return new JsonResponse(['succes' => true]);
+        
+=======
     #[Route('/update/producto/{id}', name: 'app_producto')]
     public function updateProducto($id): Response
     {
@@ -46,5 +59,6 @@ class ProductoController extends AbstractController
         $this->en->remove($producto);
         $this->en->flush();
         return new JsonResponse(['success' => true]);
+>>>>>>> 937d6b9bb2525c716d8828f18aede3c6436a7999
     }
 }
