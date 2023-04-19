@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PRODUCTORepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PRODUCTORepository::class)]
@@ -15,9 +16,6 @@ class PRODUCTO
 
     #[ORM\Column(length: 255)]
     private ?string $prd_nombre = null;
-
-    #[ORM\Column]
-    private ?int $prd_unidad = null;
 
     #[ORM\Column]
     private ?int $prd_cantidad = null;
@@ -34,6 +32,9 @@ class PRODUCTO
     #[ORM\Column]
     private ?bool $prd_iva = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $prd_unidad = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,18 +48,6 @@ class PRODUCTO
     public function setPrdNombre(string $prd_nombre): self
     {
         $this->prd_nombre = $prd_nombre;
-
-        return $this;
-    }
-
-    public function getPrdUnidad(): ?int
-    {
-        return $this->prd_unidad;
-    }
-
-    public function setPrdUnidad(int $prd_unidad): self
-    {
-        $this->prd_unidad = $prd_unidad;
 
         return $this;
     }
@@ -119,6 +108,18 @@ class PRODUCTO
     public function setPrdIva(bool $prd_iva): self
     {
         $this->prd_iva = $prd_iva;
+
+        return $this;
+    }
+
+    public function getPrdUnidad(): ?string
+    {
+        return $this->prd_unidad;
+    }
+
+    public function setPrdUnidad(string $prd_unidad): self
+    {
+        $this->prd_unidad = $prd_unidad;
 
         return $this;
     }
