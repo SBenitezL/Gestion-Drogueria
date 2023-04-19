@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\PRODUCTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,5 +29,13 @@ class ProductoController extends AbstractController
             'producto' => $producto,
             'custome_prd' => $custome_prd
         ]);
+    }
+    #[Route('/remove/producto/{id}', name: 'app_producto')]
+    public function removeProducto($id): Response
+    {
+        $producto = $this->en->getRepository(PRODUCTO::class)->find(id:$id);
+        $this->en->remove($producto);
+        $this->en->flush();
+        return new JsonResponse(['success' => true]);
     }
 }
