@@ -5,8 +5,14 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+<<<<<<< HEAD
 /vendor/
 /var/
+=======
+/var/
+/vendor/
+.env
+>>>>>>> ec25e2c1ba67d37c851b673123d77d2b1f91265c
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
